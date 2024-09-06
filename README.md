@@ -11,8 +11,7 @@ This project is a dynamic charting application with a Next.js frontend and Djang
 - [Usage](#usage)
 - [API](#api)
 - [Development](#development)
-- [Contributing](#contributing)
-- [License](#license)
+- [Docker](#docker)
 
 ## Project Structure
 
@@ -49,7 +48,6 @@ The backend is built with Django and provides the API for the frontend.
 2. Install the required packages:
    ```sh
    npm install 
-
    ```
 3. Run the Next.js development server:
    ```sh
@@ -68,10 +66,32 @@ The backend API can be accessed at: `http://localhost:8000/api/candlestick-data/
 ## Development
 
 When developing, keep in mind that the frontend is configured to access the API at:
-
 ```javascript
 export const apiUrl = "http://localhost:3000/dashboard"
 ```
-
 Ensure your backend is running and accessible at this URL.
+
+## Docker
+
+To run the entire application using Docker, follow these steps:
+
+1. Ensure Docker Desktop is installed and running on your machine.
+
+2. Navigate to the root folder of the project in your terminal.
+
+3. Build and start the Docker containers using the following command:
+
+   ```sh
+   docker-compose up --build
+   ```
+
+   This command will build the Docker images for both the frontend and backend, and then start the containers.
+
+4. Once the containers are up and running, you can access the application by opening a web browser and navigating to:
+
+   ```
+   http://localhost:3000/dashboard
+   ```
+
+
 
