@@ -1,7 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import { Chart } from 'react-google-charts';
 
+/**
+ * LineChart Component
+ * 
+ * This component renders a line chart using Google Charts.
+ * It takes data as a prop and transforms it into the format required by Google Charts.
+ * 
+ */
 const LineChart = ({ data }) => {
+    // State to hold the transformed data for the chart
     const [lineData, setLineData] = useState([])
 
     useEffect(() => {
@@ -13,8 +21,9 @@ const LineChart = ({ data }) => {
             return result;
           };
         setLineData(transformData(data))
-    }, [])
+    }, [data]) // Added data as a dependency
       
+    // Configuration options for the chart
     const options = {
       title: 'Monthly Data',
       curveType: 'function',
@@ -38,4 +47,4 @@ const LineChart = ({ data }) => {
     );
 };
   
-  export default LineChart;
+export default LineChart;

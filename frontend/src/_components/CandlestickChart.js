@@ -1,8 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import { Chart } from "react-google-charts";
 
-
+/**
+ * CandlestickChart Component
+ * 
+ * This component renders a candlestick chart using Google Charts.
+ * It takes data as a prop and transforms it into the format required by Google Charts.
+ * 
+ */
 const CandlestickChart = ({ data }) => {
+  // State to hold the transformed data for the chart
   const [candleData, setcandleData] = useState([])
   
   useEffect(() => {
@@ -23,8 +30,9 @@ const CandlestickChart = ({ data }) => {
     setcandleData(transformData(data));
     console.log(candleData);
     
-  }, []);
+  }, [data]); // Added data as a dependency
 
+  // Configuration options for the chart
   const options = {
     legend: 'none',
     bar: { groupWidth: '100%' },
@@ -34,18 +42,14 @@ const CandlestickChart = ({ data }) => {
     },
   };
   
-  
   return (
     <Chart
       chartType="CandlestickChart"
       width="100%"
       height="400px"
       data={candleData}
-      options={{
-        legend: "none",
-      }}
+      options={options}
     />
-    // <h1>Hello</h1>
   );
 };
 

@@ -7,28 +7,43 @@ import PieChart from '@/_components/PieChart';
 
 import { apiUrl } from '@/api/apiUrl';
 
+/**
+ * Dashboard Component
+ * 
+ * This component renders a dashboard with multiple chart types.
+ * It fetches data for different charts from the API and allows the user to switch between them.
+ */
 const Dashboard = () => {
+    // State for storing chart data
     const [chartData, setChartData] = useState({
         candlestick: null,
         line: null,
         bar: null,
         pie: null, 
     });
+
+    // State for storing error messages
     const [errors, setErrors] = useState({
         candlestick: null,
         line: null,
         bar: null,
         pie: null,
     });
+
+    // State for the currently selected chart
     const [selectedChart, setSelectedChart] = useState('candlestick');
+
+    // State for loading indicator
     const [isLoading, setIsLoading] = useState(true);
 
+    // Effect hook to fetch data when the component mounts
     useEffect(() => {
         console.log(apiUrl);
         
         const fetchData = async () => {
             setIsLoading(true);
             try {
+                // Fetch data for all charts concurrently
                 const [candlestickRes, lineRes, barRes, pieRes] = await Promise.allSettled([
                     axios.get(apiUrl+ '/candlestick-data/'),
                     axios.get(apiUrl+ '/line-chart-data/'),
@@ -36,6 +51,7 @@ const Dashboard = () => {
                     axios.get(apiUrl+ '/pie-chart-data/'),
                 ]);
 
+                // Update chart data state based on API responses
                 setChartData({
                     candlestick: candlestickRes.status === 'fulfilled' ? candlestickRes.value.data : null,
                     line: lineRes.status === 'fulfilled' ? lineRes.value.data : null,
@@ -43,6 +59,7 @@ const Dashboard = () => {
                     pie: pieRes.status === 'fulfilled' ? pieRes.value.data : null,
                 });
 
+                // Update error state if any requests failed
                 setErrors({
                     candlestick: candlestickRes.status === 'rejected' ? 'Failed to fetch candlestick data' : null,
                     line: lineRes.status === 'rejected' ? 'Failed to fetch line chart data' : null,
@@ -59,6 +76,10 @@ const Dashboard = () => {
         fetchData();
     }, []);
 
+    /**
+     * Renders the selected chart based on user selection
+     * @returns {JSX.Element} The selected chart component or error/loading message
+     */
     const renderSelectedChart = () => {
         if (isLoading) {
             return <div className="text-center py-10">Loading...</div>;
@@ -89,6 +110,7 @@ const Dashboard = () => {
 
     return (
         <div className="text-black flex flex-col lg:flex-row min-h-screen bg-gray-100">
+            {/* Sidebar for chart selection */}
             <div className="w-full lg:w-64 p-4 lg:p-6 bg-white shadow-md">
                 <h2 className="text-xl font-semibold mb-4">Select Chart</h2>
                 <select 
@@ -102,6 +124,7 @@ const Dashboard = () => {
                     <option value="pie">Pie Chart</option>
                 </select>
             </div>
+            {/* Main content area */}
             <div className="flex-1 p-4 lg:p-6">
                 <h1 className="text-2xl lg:text-3xl font-bold mb-4 lg:mb-6">Dashboard</h1>
                 <div className="bg-white p-4 lg:p-6 rounded-lg shadow-md">
