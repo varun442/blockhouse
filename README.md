@@ -75,10 +75,3 @@ export const apiUrl = "http://localhost:3000/dashboard"
 
 Ensure your backend is running and accessible at this URL.
 
-## Contributing
-
-[Add contribution guidelines here]
-
-## License
-
-[Add license information here]
