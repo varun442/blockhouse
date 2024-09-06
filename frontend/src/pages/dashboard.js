@@ -5,6 +5,8 @@ import LineChart from '@/_components/LineChart';
 import BarChart from '@/_components/BarChart';
 import PieChart from '@/_components/PieChart';
 
+import { apiUrl } from '@/api/apiUrl';
+
 const Dashboard = () => {
     const [chartData, setChartData] = useState({
         candlestick: null,
@@ -22,14 +24,16 @@ const Dashboard = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        console.log(apiUrl);
+        
         const fetchData = async () => {
             setIsLoading(true);
             try {
                 const [candlestickRes, lineRes, barRes, pieRes] = await Promise.allSettled([
-                    axios.get('http://localhost:8000/api/candlestick-data/'),
-                    axios.get('http://localhost:8000/api/line-chart-data/'),
-                    axios.get('http://localhost:8000/api/bar-chart-data/'),
-                    axios.get('http://localhost:8000/api/pie-chart-data/'),
+                    axios.get(apiUrl+ '/candlestick-data/'),
+                    axios.get(apiUrl+ '/line-chart-data/'),
+                    axios.get(apiUrl+ '/bar-chart-data/'),
+                    axios.get(apiUrl+ '/pie-chart-data/'),
                 ]);
 
                 setChartData({

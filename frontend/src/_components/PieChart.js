@@ -3,8 +3,6 @@ import { Chart } from 'react-google-charts';
 
 const PieChart = ({ data }) => {
     const [pieData, setpieData] = useState([])
-  
-  
 
   useEffect(() => {
     const transformData = (inputData) => {
