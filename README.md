@@ -18,7 +18,9 @@ Key files:
 
 ### Backend (Django)
 
-The backend is built with Django and provides the API for the frontend.
+Key files:
+- `api\views.py`
+- `api\urls.py`
 
 ## Setup and Installation
 
