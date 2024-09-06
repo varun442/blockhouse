@@ -4,14 +4,6 @@
 
 This project is a dynamic charting application with a Next.js frontend and Django backend. It allows users to view various types of charts including bar charts, line charts, candlestick charts, and pie charts.
 
-## Table of Contents
-
-- [Project Structure](#project-structure)
-- [Setup and Installation](#setup-and-installation)
-- [Usage](#usage)
-- [API](#api)
-- [Development](#development)
-- [Docker](#docker)
 
 ## Project Structure
 
