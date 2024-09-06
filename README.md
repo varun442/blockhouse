@@ -48,8 +48,7 @@ The backend is built with Django and provides the API for the frontend.
 1. Navigate to the frontend directory.
 2. Install the required packages:
    ```sh
-   npx create-next-app@latest
-   npm install --save react-google-charts
+   npm install 
 
    ```
 3. Run the Next.js development server:
